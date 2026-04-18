@@ -1,0 +1,41 @@
+name: CI Pipeline
+
+on:
+    push:
+        branches: [main]
+    pull_request: 
+    
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                node-version: 18                   
+
+            - name: Install Dependencies
+              run: npm Install
+
+            - name: Run List
+              run: npm run list
+
+            - name: Build Project
+              run: npm run build
+
+
+# 1. name: CI Pipeline, its just a label name in the actions tab in github
+# 2. on:
+#  push:
+#    branches: [main]
+#  pull_request:
+# When should Pipeline run, its push to main-->run CI
+# Create/update PR-->run CI
+# 3. jobs
+# jobs:
+#    build:
+# its a job to post run
